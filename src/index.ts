@@ -13,11 +13,11 @@ echarts.setPlatformAPI({
   },
 })
 
-const options = JSON.parse(readFileSync(join(import.meta.dirname, 'options.json'), 'utf8'))
 
 const server = express()
 
 server.get('/svg', (req, res) => {
+  const options = JSON.parse(readFileSync(join(import.meta.dirname, 'options.json'), 'utf8'))
   const chart = echarts.init(null, null, {
     renderer: 'svg',
     ssr: true,
@@ -31,6 +31,7 @@ server.get('/svg', (req, res) => {
 })
 
 server.get('/png', (req, res) => {
+  const options = JSON.parse(readFileSync(join(import.meta.dirname, 'options.json'), 'utf8'))
   const canvas = createCanvas(width, height)
   const chart = echarts.init(canvas)
   chart.setOption(options)
